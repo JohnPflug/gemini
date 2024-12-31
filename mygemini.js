@@ -11,11 +11,14 @@ const myGenAI = new GoogleGenerativeAI(process.env.Gemini_API_Key);
 // Use .getGenerativeModel() method to retrieve the model and assign it to a variable:
 const model = myGenAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-// Variable for the messsage (string) input:
-const prompt = "Hello, can you still hear me?";
+// Theme/function:
+const theme = "Please analyse this dream:"
+
+// Enter your dream into the string for prompt below:
+const prompt = "I once dreamt I counted sheep until the world imploded";
 
 // Invok the .generateContent() method of the model object, with prompt as an argument:
-const result = await model.generateContent(prompt); // await keyword waits for a Promise to resolve.
+const result = await model.generateContent(`${theme} ${prompt}`); // await keyword waits for a Promise to resolve.
 
 // Log the response text:
 console.log(result.response.text()); // response is a property of the result object, which has the property text
