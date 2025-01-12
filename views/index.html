@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Analysis</title>
+</head>
+
+<body>
+    <h1>
+        What do you dream?
+    </h1>
+    <div class="theDiv">
+        <textarea id="postJSON" placeholder="Enter your dream here"></textarea>
+        <button id="submitButton">Submit</button>
+    </div>
+    <p id="dreamInterpretation"></p>
+    <img id="dreamImage" src='' width="500" height="600">
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('submitButton').addEventListener('click', async () => {
+                const jsonInput = document.getElementById('postJSON').value;
+
+                try {
+                    const response = await fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ jsonInput })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const responseData = await response.json();
+
+                    // Update the inner HTML of the paragraph with the analysis
+                    document.getElementById('dreamInterpretation').innerHTML = responseData.dreamResponse
+
+                    // Display the image
+                    document.getElementById('dreamImage').src = responseData.imageURL;
+                    console.log(responseData.imageURL);
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
