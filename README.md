@@ -9,5 +9,5 @@ Gemini_API_Key='yourKeyHere'
 5. In-browser, go to http://localhost:3000/
 6. In the text area, enter a dream that you would like to have interpreted.
 7. Click submit.
-8. Wait for the response.
+8. Wait for the dream analsysis and image.
 9. Reflect (Optional).
